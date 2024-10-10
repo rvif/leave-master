@@ -53,8 +53,8 @@ const Header = ({ user }: HeaderProps) => {
                   <DropdownMenuItem>Support</DropdownMenuItem>
 
                   <DropdownMenuSeparator />
-                  {/* Aligning LogoutBtn and ToggleDarkLight horizontally */}
-                  <div className="flex items-center justify-between space-x-4">
+                  {/* Aligning LogoutBtn and ToggleDarkLight next to each other in the center */}
+                  <div className="flex items-center justify-center space-x-4">
                     <LogoutBtn />
                     <ToggleDarkLight />
                   </div>
