@@ -9,7 +9,7 @@ import LogoutBtn from "./LogoutBtn";
 
 type SideBarDrawerProps = {
   user: User;
-}; 
+};
 
 const SideBarDrawer = ({ user }: SideBarDrawerProps) => {
   const adminRouter = () => {
@@ -34,7 +34,7 @@ const SideBarDrawer = ({ user }: SideBarDrawerProps) => {
       <SheetContent side="left" className="flex flex-col justify-between w-52">
         <div>
           <div className="flex mt-3 justify-center">
-            <Image src="/spana-b.png" width={50} height={50} alt="logo" />
+            <Image src="/logo.png" width={50} height={50} alt="logo" />
           </div>
           <nav className="flex flex-col items-center px-3 overflow-y-auto">
             {user?.role === "ADMIN" && adminRouter()}
