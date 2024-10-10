@@ -1,4 +1,5 @@
 import { getCurrentUser } from "@/lib/session";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { differenceInDays, parseISO } from "date-fns";
 
@@ -27,7 +28,7 @@ export async function POST(req: NextRequest) {
     const { startDate, endDate, leave, notes, user } = body;
 
     const startDateObj = parseISO(startDate);
-    const endDateObj = parseISO(endDate)
+    const endDateObj = parseISO(endDate);
     const calcDays = differenceInDays(endDateObj, startDateObj) + 1;
 
     const existingLeave = await prisma.leave.findFirst({
