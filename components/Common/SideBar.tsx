@@ -39,8 +39,12 @@ const SideBar = ({ user }: SideBarProps) => {
 
         {/* BOTTOM PART */}
         <div className="flex flex-col items-center space-y-6 my-8">
-          <LogoutBtn />
-          <ToggleDarkLight />
+          <div className="w-12 h-12 flex items-center justify-center">
+            <LogoutBtn />
+          </div>
+          <div className="w-12 h-12 flex items-center justify-center">
+            <ToggleDarkLight />
+          </div>
         </div>
       </div>
     </div>
