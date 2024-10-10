@@ -1,10 +1,9 @@
-import AuthComponent from '@/components/Other/AuthComponent'
-
+import AuthComponent from "@/components/Other/AuthComponent";
+import supabase from "../../src/config/supabaseClient";
 
 const LoginPage = () => {
-  return (
-    <AuthComponent/>
-  )
-}
+  console.log(supabase);
+  return <AuthComponent />;
+};
 
-export default LoginPage
+export default LoginPage;
