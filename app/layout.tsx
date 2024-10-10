@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "./Provider";
 
 export const metadata: Metadata = {
-  title: "Spana",
+  title: "LeaveMaster",
   description: "...",
 };
 
