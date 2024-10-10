@@ -1,5 +1,6 @@
 import calculateAndUpdateBalances from "@/lib/calculateBalances";
 import { getCurrentUser } from "@/lib/session";
+import prisma from "@/lib/prisma";
 import { LeaveStatus } from "@prisma/client";
 import { NextResponse } from "next/server";
 
@@ -11,9 +12,9 @@ type EditBody = {
   type: string;
   year: string;
   email: string;
-  user: string
-  startDate: string
-}
+  user: string;
+  startDate: string;
+};
 
 export async function PATCH(req: Request) {
   const loggedInUser = await getCurrentUser();
@@ -24,15 +25,16 @@ export async function PATCH(req: Request) {
   try {
     const body: EditBody = await req.json();
 
-    const { notes, status, id, days, type, year, email, user, startDate } = body;
+    const { notes, status, id, days, type, year, email, user, startDate } =
+      body;
 
     const updatedAt = new Date().toISOString();
     const moderator = loggedInUser.name;
 
     if (status === LeaveStatus.APPROVED) {
       await calculateAndUpdateBalances(email, year, type, days);
-      const title = `${user} on Leave`
-      const description = `For ${days} days`
+      const title = `${user} on Leave`;
+      const description = `For ${days} days`;
       await prisma.events.create({
         data: {
           startDate,
