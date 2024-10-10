@@ -1,5 +1,5 @@
 import AuthComponent from "@/components/Other/AuthComponent";
-import supabase from "../../src/config/supabaseClient";
+import supabase from "../../lib/supabaseClient";
 
 const LoginPage = () => {
   console.log(supabase);
