@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
   pages: {
     signIn: "/login",
+    error: "/auth/error",
   },
   session: {
     strategy: "jwt",
@@ -29,7 +30,6 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-
     jwt: async ({ token, user }) => {
       if (user) {
         token.role = user.role;
@@ -43,4 +43,5 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  debug: true,
 };
