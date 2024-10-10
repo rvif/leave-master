@@ -5,15 +5,14 @@ const ROLES_ALLOWED_TO_AUTH = ["ADMIN", "MODERATOR", "USER"];
 
 export default withAuth(
   function middleware(req) {
-   
-    if(req.nextUrl.pathname === '/' && req.nextauth.token){
+    if (req.nextUrl.pathname === "/" && req.nextauth.token) {
       return NextResponse.redirect(new URL("/portal", req.url));
     }
 
     if (req.nextUrl.pathname.startsWith("/portal") && !req.nextauth.token) {
       return NextResponse.redirect(new URL("/", req.url));
-    } 
-    
+    }
+
     if (
       req.nextUrl.pathname.startsWith("/dashboard") &&
       req.nextauth.token?.role !== "ADMIN" &&
@@ -21,8 +20,6 @@ export default withAuth(
     ) {
       return NextResponse.redirect(new URL("/portal", req.url));
     }
-
-
   },
   {
     callbacks: {
