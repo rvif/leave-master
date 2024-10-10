@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,15 +14,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -46,12 +42,6 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-enum Role {
-  USER
-  ADMIN
-  MODERATOR
-}
-
 model User {
   id            String     @id @default(cuid())
   name          String?
@@ -63,30 +53,23 @@ model User {
   title         String?
   manager       String?
   department    String?
-  accounts      Account[] 
-  sessions      Session[]
+  accounts      Account[]
   balances      Balances[]
+  sessions      Session[]
 }
 
 model LeaveType {
   id          String   @id @default(cuid())
   title       String
   values      String[] @default(["Credit", "Used", "Available"])
-  category    String // Should be a lower case of the title 
+  category    String
   description String?
-}
-
-enum LeaveStatus {
-  PENDING
-  APPROVED
-  INMODERATION
-  REJECTED
 }
 
 model Leave {
   id            String      @id @default(cuid())
   type          String
-  year String @default("")
+  year          String      @default("")
   startDate     DateTime
   endDate       DateTime
   days          Int
@@ -95,8 +78,8 @@ model Leave {
   tasksLink     String?
   userEmail     String
   status        LeaveStatus @default(PENDING)
-  moderator     String?      
-  moderatorNote String?     
+  moderator     String?
+  moderatorNote String?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @default(now())
 }
@@ -129,10 +112,22 @@ model Balances {
 }
 
 model Events {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
   description String?
   startDate   DateTime
   endDate     DateTime?
 }
 
+enum Role {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  INMODERATION
+  REJECTED
+}
