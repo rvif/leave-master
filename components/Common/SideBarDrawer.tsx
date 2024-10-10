@@ -27,7 +27,7 @@ const SideBarDrawer = ({ user }: SideBarDrawerProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="p-2 bg-blue-100 rounded-full text-blue-500 transition duration-200 hover:bg-blue-200">
+        <button className="p-2 bg-blue-100 rounded-full text-blue-500">
           <TiThMenu size={24} />
         </button>
       </SheetTrigger>
@@ -40,16 +40,18 @@ const SideBarDrawer = ({ user }: SideBarDrawerProps) => {
         </div>
 
         {/* Centered Nav Section */}
-        <nav className="flex flex-col items-center justify-center flex-grow px-3 overflow-y-auto space-y-4">
+        <nav className="flex flex-col items-center px-3 overflow-y-auto flex-grow justify-center">
           {user?.role === "ADMIN" && adminRouter()}
           {user?.role === "USER" && userRouter()}
           {user?.role === "MODERATOR" && moderatorRouter()}
         </nav>
 
         {/* Footer with Logout and Theme Toggle */}
-        <div className="flex items-center justify-center space-x-6 pb-4">
+        <div className="flex items-center justify-around pb-4">
           <ToggleDarkLight />
-          <LogoutBtn />
+          <button className="text-slate-500 dark:text-slate-300">
+            <LogoutBtn />
+          </button>
         </div>
       </SheetContent>
     </Sheet>
